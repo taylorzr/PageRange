@@ -5,7 +5,7 @@ class PageRange(set):
     def __init__(self, pages=[]):
         """
             Args:
-                pages: Either a list of intergers, or a range string.
+                pages: Either a list of integers, or a range string.
         """
         if type(pages) is str:
             pages = self._parse_range(pages)
@@ -44,7 +44,7 @@ class PageRange(set):
 
     @property
     def pages(self):
-            return list(self)
+        return list(self)
 
     @property
     def range(self):
@@ -56,38 +56,25 @@ class PageRange(set):
 
         else:
             pages = list(self)
-            range_ = str(pages[0])
+            page_range = str(pages[0])
             sequential = False
             for current_page, previous_page in zip(pages[1:], pages):
                 difference = current_page - previous_page
                 if difference > 1:
                     if sequential:
-                        range_ = "-".join([range_, str(previous_page)])
-                    range_ = ",".join([range_, str(current_page)])
+                        page_range = "-".join([page_range, str(previous_page)])
+                    page_range = ",".join([page_range, str(current_page)])
                     sequential = False
                 if difference == 1:
                     if current_page == pages[-1]:
-                        range_ = "-".join([range_, str(current_page)])
+                        page_range = "-".join([page_range, str(current_page)])
                     sequential = True
 
             # Return the range
-            return range_
+            return page_range
 
     def add_page(self, page):
         self.update([page])
 
     def remove_page(self, page):
         self.remove(page)
-
-
-if __name__ == "__main__":
-    pr = PageRange([1,2,3,5,10])
-    pr.add_page(6)
-    pr.remove_page(5)
-    print pr, "->", pr.pages
-
-    pr = PageRange("1-3,5,10")
-    pr.add_page(6)
-    pr.remove_page(5)
-    print pr, "->", pr.pages
-
