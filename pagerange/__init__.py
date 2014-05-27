@@ -16,7 +16,7 @@ class PageRange(set):
         return self.range
 
     def __repr__(self):
-        return "{0}(\"{1}\")".format(self.__class__, self.range)
+        return """PageRange("{0}")""".format(self.range)
 
     def _parse_range(self, page_range):
         pages = []
@@ -74,7 +74,13 @@ class PageRange(set):
             return page_range
 
     def add_page(self, page):
-        self.update([page])
+        if not type(page) == int:
+            raise TypeError
+        else:
+            self.update([page])
 
     def remove_page(self, page):
-        self.remove(page)
+        if not type(page) == int:
+            raise TypeError
+        else:
+            self.remove(page)
