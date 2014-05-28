@@ -70,7 +70,6 @@ class PageRange(set):
                         page_range = "-".join([page_range, str(current_page)])
                     sequential = True
 
-            # Return the range
             return page_range
 
     def add_page(self, page):
