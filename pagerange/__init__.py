@@ -1,5 +1,4 @@
-# TODO:
-#   Raise errors on bad input, i.e. non-integers
+
 
 class PageRange(set):
     def __init__(self, pages=[]):
