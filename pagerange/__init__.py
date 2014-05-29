@@ -73,13 +73,21 @@ class PageRange(set):
             return page_range
 
     def add_page(self, page):
-        if not type(page) == int:
+        if type(page) is not int:
             raise TypeError
         else:
             self.update([page])
 
     def remove_page(self, page):
-        if not type(page) == int:
+        if type(page) is not int:
             raise TypeError
         else:
             self.remove(page)
+
+    def add_range(self, start, end):
+        for page in range(start, end+1):
+            self.add_page(page)
+
+    def remove_range(self, start, end):
+        for page in range(start, end+1):
+            self.remove_page(page)
