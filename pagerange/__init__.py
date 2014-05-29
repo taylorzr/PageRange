@@ -6,10 +6,11 @@ class PageRange(set):
             Args:
                 pages: Either a list of integers, or a range string.
         """
+        super(PageRange, self).__init__()
         if type(pages) is str:
             pages = self._parse_range(pages)
-        self.update(pages)
-        super(PageRange, self).__init__(pages)
+        for page in pages:
+            self.add_page(page)
 
     def __str__(self):
         return self.range
