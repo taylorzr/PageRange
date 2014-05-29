@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='PageRange',
     version='0.2',
-    packages=['pagerange'],
+    packages=['pagerange', 'pagerange.test'],
     url='http://github.com/taylorzr/pagerange',
     license='MIT',
     author='Zach',
