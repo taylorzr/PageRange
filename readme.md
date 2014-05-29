@@ -1,8 +1,8 @@
 =========
-pagerange
+PageRange
 =========
 
-Pagerange is a simple module that provides a PageRange object typically used in printing. Typical usage:
+PageRange is a simple module that provides a PageRange object typically used in printing. Typical usage:
 
     from pagerange import PageRange
 

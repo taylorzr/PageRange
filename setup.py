@@ -1,9 +1,9 @@
 from distutils.core import setup
 
 setup(
-    name='pagerange',
+    name='PageRange',
     version='0.2',
-    packages=[''],
+    packages=['pagerange'],
     url='http://github.com/taylorzr/pagerange',
     license='MIT',
     author='Zach',
