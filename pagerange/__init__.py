@@ -44,7 +44,7 @@ class PageRange(set):
 
     @property
     def pages(self):
-        return list(self)
+        return sorted(list(self))
 
     @property
     def range(self):
@@ -55,7 +55,7 @@ class PageRange(set):
             return str(list(self)[0])
 
         else:
-            pages = list(self)
+            pages = sorted(list(self))
             page_range = str(pages[0])
             sequential = False
             for current_page, previous_page in zip(pages[1:], pages):
@@ -76,7 +76,7 @@ class PageRange(set):
         if type(page) is not int:
             raise TypeError
         else:
-            self.update([page])
+            self.add(page)
 
     def remove_page(self, page):
         if type(page) is not int:
@@ -84,10 +84,19 @@ class PageRange(set):
         else:
             self.remove(page)
 
-    def add_range(self, start, end):
-        for page in range(start, end+1):
+    def add_pages(self, pages):
+        for page in pages:
             self.add_page(page)
 
-    def remove_range(self, start, end):
-        for page in range(start, end+1):
+    def remove_pages(self, pages):
+        for page in pages:
             self.remove_page(page)
+
+    def add_range(self, page_range):
+        pages = self._parse_range(page_range)
+        self.add_pages(pages)
+
+    def remove_range(self, page_range):
+        pages = self._parse_range(page_range)
+        self.remove_pages(pages)
+
