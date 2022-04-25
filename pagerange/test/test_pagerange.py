@@ -1,11 +1,12 @@
 from unittest import TestCase, main
 from pagerange import PageRange
 
-
 class PageRangeTestCase(TestCase):
     def setUp(self):
         self.page_range_1 = PageRange([1, 2, 3, 4, 5, 10, 42])
         self.page_range_2 = PageRange("1-5, 10, 42")
+        self.page_range_3 = PageRange(" 12, 14, 30  -32, 31-33 45")
+
 
     def test_add_page(self):
         self.assertNotIn(6, self.page_range_1)
@@ -22,11 +23,11 @@ class PageRangeTestCase(TestCase):
         self.assertTrue(6 == len(self.page_range_1))
 
     def test_equality(self):
-        self.assertEquals(self.page_range_1, self.page_range_2)
+        self.assertEqual(self.page_range_1, self.page_range_2)
 
     def test_unique(self):
         self.page_range_2.add_page(1)
-        self.assertEquals(self.page_range_1, self.page_range_2)
+        self.assertEqual(self.page_range_1, self.page_range_2)
 
     def test_noninteger(self):
         self.assertRaises(TypeError, self.page_range_1.add_page, "x")
